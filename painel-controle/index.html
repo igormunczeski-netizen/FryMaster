@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DuChef – Painel de Controle</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="brand">
+                <span class="brand-icon">◆</span>
+                <span class="brand-name">DuChef</span>
+            </div>
+            <h1 class="hero-title">A Revolução <span class="accent">360°</span><br>na sua Cozinha.</h1>
+            <p class="hero-sub">Tecnologia e Design que transformam o seu dia a dia</p>
+            <a href="#painel" class="btn-hero">Acessar Painel</a>
+        </div>
+        <div class="hero-display">
+            <div class="display-screen">
+                <div class="display-temp">400°</div>
+                <div class="display-time">15:00</div>
+                <div class="display-icons">
+                    <span>✦</span><span>✸</span><span>⬡</span><span>▼</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- FEATURES -->
+    <section class="features">
+        <p class="section-label">◆ Mais do que um forno</p>
+        <h2 class="section-title">Uma experiência <span class="accent">completa.</span></h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">👁</div>
+                <h3>Visão Total & Luz Interna</h3>
+                <p>Monitore seus alimentos sem abrir a porta e sem perder calor.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔄</div>
+                <h3>Sistema Rotativo 360°</h3>
+                <p>Coccão uniforme, mais crocância e resultados profissionais.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌡</div>
+                <h3>Sensor NTC & Controle Preciso</h3>
+                <p>Temperatura inteligente para garantir o ponto perfeito.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAINEL -->
+    <section class="painel-section" id="painel">
+        <p class="section-label">◆ Interface de Controle</p>
+        <h2 class="section-title">Painel <span class="accent">DuChef</span></h2>
+
+        <div class="panel-container">
+            <div class="panel-header">
+                <span class="panel-brand">◆ DuChef</span>
+                <div class="header-tabs">
+                    <div class="tab active" onclick="switchTab('manual', event)">Manual Mode</div>
+                    <div class="tab" onclick="switchTab('auto', event)">Automatic Mode</div>
+                </div>
+            </div>
+
+            <!-- MANUAL -->
+            <div id="manual" class="screen active">
+                <div class="control-row">
+                    <div class="control-left">
+                        <span class="label">TIMER</span>
+                        <div class="display-value" id="timer-val">15:00</div>
+                    </div>
+                    <div class="controls">
+                        <button class="btn-circle" onclick="adjust('timer', -1)">−</button>
+                        <button class="btn-circle" onclick="adjust('timer', 1)">+</button>
+                    </div>
+                </div>
+
+                <div class="control-row">
+                    <div class="control-left">
+                        <span class="label">TEMP</span>
+                        <div class="display-value" id="temp-val">400°</div>
+                    </div>
+                    <div class="controls">
+                        <button class="btn-circle" onclick="adjust('temp', -10)">−</button>
+                        <button class="btn-circle" onclick="adjust('temp', 10)">+</button>
+                    </div>
+                </div>
+
+                <div class="panel-footer">
+                    <div class="golden-badge">GOLDEN</div>
+                    <button class="btn-start" onclick="toggleStart()">
+                        <span id="start-label">▶ INICIAR</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- AUTOMÁTICO -->
+            <div id="auto" class="screen">
+                <div class="menu-item" onclick="selectMode(this, 200, 25)">
+                    <span class="menu-icon">🍗</span>
+                    <span class="menu-text">CHICKEN</span>
+                    <span class="menu-detail">200° · 25min</span>
+                </div>
+                <div class="menu-item" onclick="selectMode(this, 220, 30)">
+                    <span class="menu-icon">🥩</span>
+                    <span class="menu-text">MEAT</span>
+                    <span class="menu-detail">220° · 30min</span>
+                </div>
+                <div class="menu-item" onclick="selectMode(this, 190, 20)">
+                    <span class="menu-icon">🍟</span>
+                    <span class="menu-text">FRENCH FRIES</span>
+                    <span class="menu-detail">190° · 20min</span>
+                </div>
+                <div class="menu-item" onclick="selectMode(this, 180, 15)">
+                    <span class="menu-icon">🍕</span>
+                    <span class="menu-text">PIZZA</span>
+                    <span class="menu-detail">180° · 15min</span>
+                </div>
+                <div class="menu-item" onclick="selectMode(this, 0, 0)">
+                    <span class="menu-icon">⚙️</span>
+                    <span class="menu-text">SPECIFY</span>
+                    <span class="menu-detail">—</span>
+                </div>
+                <div class="menu-item" onclick="selectMode(this, 0, 0)">
+                    <span class="menu-icon">•••</span>
+                    <span class="menu-text">MORE</span>
+                    <span class="menu-detail">—</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACOMPANHA -->
+    <section class="includes">
+        <p class="section-label">◆ Acompanha</p>
+        <h2 class="section-title">Kit <span class="accent">Completo</span></h2>
+        <div class="includes-grid">
+            <div class="include-item">✔ Cesto rotativo</div>
+            <div class="include-item">✔ Espeto giratório</div>
+            <div class="include-item">✔ Bandeja coletora</div>
+            <div class="include-item">✔ Design premium</div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <span class="brand-name">◆ DuChef</span>
+        <p>Experimente a inovação! <span class="accent">DUCHEF.COM.BR</span></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
