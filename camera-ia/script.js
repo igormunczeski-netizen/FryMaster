@@ -13,14 +13,12 @@
     const mConf = document.getElementById('m-conf');
     const mCor  = document.getElementById('m-cor');
     const mTime = document.getElementById('m-time');
-    const mFps  = document.getElementById('m-fps');
     const confBar = document.getElementById('conf-bar');
 
     /* ── STATE ── */
     let cameraOn = false;
     let cooking  = false;
     let cookTimer = null;
-    let fpsInterval = null;
 
     /* ── LOG HELPER ── */
     function log(msg, cls = '') {
@@ -49,7 +47,6 @@
         mCam.textContent = 'ONLINE'; mCam.className = 'metric-value ok';
         mTemp.textContent = '-- °C'; mTemp.className = 'metric-value warn';
         mTurb.textContent = 'STANDBY'; mTurb.className = 'metric-value warn';
-        mFps.textContent  = '30 FPS'; mFps.className  = 'metric-value ok';
 
         // Simulate temp rising
         let t = 22;
@@ -58,11 +55,6 @@
           if (t >= 200) { t = 200; clearInterval(tempRise); }
           mTemp.textContent = t + ' °C';
         }, 400);
-
-        // fps flicker
-        fpsInterval = setInterval(() => {
-          mFps.textContent = (28 + Math.floor(Math.random()*4)) + ' FPS';
-        }, 800);
 
         log('Câmera LIGADA. Inicializando sensor de imagem...', 'gold');
         log('Turbina em standby. Aguardando alimento.', '');
@@ -76,7 +68,6 @@
     /* ── RESET ── */
     function resetAll() {
       if (cookTimer) { clearInterval(cookTimer); cookTimer = null; }
-      if (fpsInterval) { clearInterval(fpsInterval); fpsInterval = null; }
       cooking = false;
 
       cameraOn = false;
@@ -94,7 +85,7 @@
       barFill.style.width = '0%';
       pctVal.textContent = '0';
 
-      [mCam,mTemp,mTurb,mFood,mConf,mCor,mTime,mFps].forEach(el => {
+      [mCam,mTemp,mTurb,mFood,mConf,mCor,mTime].forEach(el => {
         el.className = 'metric-value off';
       });
       mCam.textContent  = 'OFFLINE';
@@ -104,7 +95,6 @@
       mConf.textContent = '—';
       mCor.textContent  = '—';
       mTime.textContent = '—';
-      mFps.textContent  = '— FPS';
       confBar.style.width = '0%';
     }
 
