@@ -198,8 +198,19 @@ body::before {
     border-radius: 10px;
     position: relative;
     overflow: hidden;
-    background: #000;
     cursor: default;
+    background: #000;
+}
+
+.camera-zone.active {
+    background: #000 url('assets/camera-pov.png') center/cover no-repeat;
+}
+
+.oven-bg,
+.oven-wall,
+.lamp,
+.cam-module {
+    display: none !important;
 }
 
 
